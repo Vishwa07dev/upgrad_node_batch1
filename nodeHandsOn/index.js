@@ -2,9 +2,12 @@
  * We are going to create a  http server in Node.js
  */
 const http = require('http');
+const fs = require('fs');
+const fsp = fs.promises; // Read the file asynchronously using promise
 
 
 console.log("Hello world");
+
 
 
 /**
@@ -12,12 +15,22 @@ console.log("Hello world");
  * 
  * 
  */
-const server = http.createServer((req, res)=>{
+const server = http.createServer(async (req,res)=>{
     
      if(req.url == '/hello'){
          res.end("Hello from the server");
      }else if( req.url == '/welcome'){
-         res.end("Welcome from the server");
+
+        const msg = await fsp.readFile("./files/welcome.txt", "binary");
+
+        returnResponse(res,msg);
+        
+
+          /**
+           * Read from the file welcome.txt and return that as 
+           * the response
+           */
+         
      }else{
          res.writeHead(500); // 500 - Internal server error
          res.end("Server doesn't how to react");
@@ -31,3 +44,8 @@ const server = http.createServer((req, res)=>{
 server.listen(3000,()=>{
      console.log("Node.js server started in port no : 3000");
 })
+
+
+function returnResponse( res, data){
+    res.end(data);
+}
