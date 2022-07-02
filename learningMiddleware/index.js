@@ -2,11 +2,18 @@ const express  = require("express");
 const app = express();
 
 
-/**
- * I want express to use the middleware
- */
-app.use(requestTimeLogger); // We are plugging middleware with the express
+app.use(TotalRequestsSoFar);
 app.use(warningMessage);
+
+/**
+ * Request logger
+ */
+ let count = 0;
+function TotalRequestsSoFar(request, response, next){
+    count++;
+    response.status(200).send('Total requests received : '+count+" till time "+Date.now());
+    next();
+}
 
 /**
  * Custom defined middleware
