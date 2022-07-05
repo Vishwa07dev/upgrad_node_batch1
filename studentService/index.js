@@ -6,6 +6,8 @@ const express = require('express');
 
 const app = express();
 
+const bodyParser = require("body-parser");
+
 
 /**
  * I would like to get the list of all the students
@@ -77,7 +79,11 @@ app.get('/studentApp/api/v1/students' , (req , res)=>{
  * 
  * classId = 123
  */
-app.use(express.json());
+//app.use(express.json()); //inbuilt middleware
+/**
+ * Third party middleware for converting json to JS object
+ */
+app.use(bodyParser.json());
 app.post("/studentApp/api/v1/classes/:classId/students", (req, res)=>{
 
     /**
