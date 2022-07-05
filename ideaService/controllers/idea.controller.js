@@ -65,3 +65,21 @@ exports.updateIdea = (req, res)=>{
        });
    }
 }
+
+/**
+ * Method to delete an existing idea
+ */
+exports.deleteIdea = (req, res)=>{
+    const ideaId  = req.params.id ;
+
+    if(ideas[ideaId]){
+        delete ideas[ideaId];
+        res.status(200).send({
+            message : "Successfully deleted"
+        });
+    }else{
+        res.status(400).send({
+            message : "Idea id passed is not valid"
+        });
+    }
+}

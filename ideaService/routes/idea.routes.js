@@ -27,5 +27,13 @@ module.exports = (app) => {
      * PUT 127.0.0.1:8080/ideaApp/api/v1/ideas/1
      */
      app.put("/ideaApp/api/v1/ideas/:id",ideadController.updateIdea);
+    
+     /**
+     * DELETE 127.0.0.1:8080/ideaApp/api/v1/ideas/1
+     */
+      app.delete("/ideaApp/api/v1/ideas/:id",ideadController.deleteIdea);
+
+
+
 
 }
