@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-
-
+/**
+ * In-built middle for converton json to js object
+ * and make it available as req.body
+ */
+app.use(express.json());
 /**
  * Stitch the app with routes
  */
