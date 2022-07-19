@@ -51,6 +51,7 @@ exports.createIdea = (req, res)=>{
  * 
  * Request body
  */
+
 exports.updateIdea = (req, res)=>{
    const ideaId  = req.params.id ;
 
@@ -65,6 +66,7 @@ exports.updateIdea = (req, res)=>{
        });
    }
 }
+
 
 /**
  * Method to delete an existing idea
