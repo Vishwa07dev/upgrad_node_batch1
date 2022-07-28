@@ -7,6 +7,10 @@ const express = require("express");
 const serverConfig = require("./configs/server.config");
 const app = express();
 const mongoose  = require("mongoose");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));  // false  pure string
 
 /**
  * I need to connec to the database
@@ -23,6 +27,12 @@ db.on('error' ,() => {
 db.once("open", ()=>{
     console.log("Connected to database");
 })
+
+
+/**
+ * Plugging in the routes
+ */
+require("./routes/auth.route")(app);
 
 
 app.listen(serverConfig.PORT , () => {

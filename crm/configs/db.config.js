@@ -1,3 +1,3 @@
 module.exports = {
-    DB_URL : "mongodb://localhost/crm_db"
+    DB_URL : "mongodb://localhost/upgrad_crm"
 }
