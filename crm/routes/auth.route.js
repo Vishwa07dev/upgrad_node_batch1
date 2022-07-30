@@ -14,4 +14,11 @@ module.exports = (app)=>{
      */
     app.post("/crm/api/v1/auth/signup" , authController.signup);
 
+    /**
+     * Define the route for the sign in
+     * 
+     * POST /crm/api/v1/auth/signin  -> auth controller sign in method
+     */
+    app.post("/crm/api/v1/auth/signin", authController.signin);
+
 }
