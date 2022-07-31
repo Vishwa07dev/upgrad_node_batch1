@@ -13,4 +13,13 @@ module.exports = (app) => {
      *  We are going to patch chained middleware between route and controller
      */
     app.get("/crm/api/v1/users", [auth.verifyToken, auth.isAdmin] , userController.findAll);
+
+
+    /**
+     * Endpoint for updating the user
+     * 
+     * PUT /crm/api/v1/users/vish01  - > user Controller , update method
+     */
+    app.put("/crm/api/v1/users/:id" , [auth.verifyToken,auth.isAdminOrOwner], userController.update);
+
 }
