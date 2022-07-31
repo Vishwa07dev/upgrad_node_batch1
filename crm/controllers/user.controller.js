@@ -13,7 +13,24 @@ const objectConverter = require("../utils/objectConverter");
 exports.findAll = async (req, res) => {
 
     try {
-        const users = await User.find({});
+
+         /**
+          * Read the query params if any
+          */
+
+        const queryObj = {};
+
+        const userTypeQ = req.query.userType ;
+        if(userTypeQ){
+            queryObj.userType = userTypeQ;
+        }
+
+        const userStatusQ = req.query.userStatus ;
+        if(userStatusQ){
+            queryObj.userStatus = userStatusQ ;
+        }
+
+        const users = await User.find(queryObj);
 
         res.status(200).send(objectConverter.userResponse(users));
 
