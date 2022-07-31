@@ -4,7 +4,7 @@
  * Middlware to validate the access token
  */
 
-const jwt = reqire("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const config = require("../configs/auth.config");
 const userModel = require("../models/user.model");
 
@@ -56,4 +56,8 @@ const isAdmin = async (req, res, next) => {
             message : "Only ADMIN user allowed"
         })
     }
+}
+module.exports = {
+    verifyToken : verifyToken ,
+    isAdmin : isAdmin
 }

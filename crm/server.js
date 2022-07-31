@@ -62,6 +62,7 @@ async function init() {
  * Plugging in the routes
  */
 require("./routes/auth.route")(app);
+require("./routes/user.routes")(app);
 
 
 app.listen(serverConfig.PORT , () => {
