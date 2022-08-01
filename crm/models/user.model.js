@@ -50,6 +50,14 @@ const userSchema  = new mongoose.Schema({
             return Date.now();
         }
         
+    },
+    ticketsCreated : {
+        type : [mongoose.SchemaTypes.ObjectId],
+        ref : "Ticket"
+    },
+    ticketAssigned : {
+        type : [mongoose.SchemaTypes.ObjectId],
+        ref : "Ticket"
     }
 });
 
