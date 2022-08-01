@@ -28,12 +28,14 @@ const userSchema  = new mongoose.Schema({
     userType : {
         type : String,
         required : true,
-        default : "CUSTOMER"
+        default : "CUSTOMER",
+        enum : ['CUSTOMER', 'ENGINEER', 'ADMIN']
     },
     userStatus : {
         type : String, 
         required : true,
-        default : "APPROVED"
+        default : "APPROVED",
+        enum : ['APPROVED', 'PENDING', 'REJECTED']
     },
     createdAt : {
         type : Date,
