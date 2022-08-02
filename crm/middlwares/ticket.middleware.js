@@ -27,6 +27,13 @@ const validateTicketReqBody = (req, res, next) => {
 
 }
 
+const isEligibleToUpdate = (req, res , next ) =>{
+    /**
+     * Write the logic to check if the calling user is eligible to
+     * update the ticket.
+     */
+}
+
 module.exports = {
     validateTicketReqBody: validateTicketReqBody
     
