@@ -69,3 +69,18 @@ exports.createTicket = async (req, res) => {
     }
 
 }
+
+
+/**
+ * Method to fetch all the users
+ * 
+ * 
+ */
+
+exports.getTickets = (req,res)=>{
+
+   /**
+    * So that depending on the user, correct list of tickets are returned
+    */
+
+}
