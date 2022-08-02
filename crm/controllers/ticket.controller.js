@@ -77,10 +77,40 @@ exports.createTicket = async (req, res) => {
  * 
  */
 
-exports.getTickets = (req,res)=>{
+exports.getTickets = async (req, res) => {
 
-   /**
-    * So that depending on the user, correct list of tickets are returned
-    */
+    try {
+        /**
+         * First fetch the details of the user who is making the call
+         */
+
+        const userId = req.userId;
+        const callingUserObj = await userModel.findOne({ userId: userId });
+
+        const queryObj = {};
+
+        /**
+         * Then  make the query object based on the type of user
+         */
+        if (callingUserObj.userType == "CUSTOMER") {
+            queryObj.reporter = req.userId;
+        } else if (callingUserObj.userType == "ENGINEER") {
+
+            queryObj.$or = [{ reporter: req.userId }, { assignee: req.userId }];
+            console.log(queryObj);
+        }
+
+        /**
+         * Finally return the result
+         */
+        const tickets = await ticketModel.find(queryObj);
+
+        return res.status(200).send(tickets);
+    } catch (err) {
+        console.log("Error while fetching tickets ", err.message);
+        res.status(500).send({
+            message: "Internal server error"
+        })
+    }
 
 }

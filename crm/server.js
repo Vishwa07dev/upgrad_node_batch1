@@ -32,7 +32,7 @@ db.once("open", ()=>{
     /**
      * Write the logic to clean and initialize the db
      */
-    init();
+    //init();
 })
 
 

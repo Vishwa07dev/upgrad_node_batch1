@@ -11,6 +11,10 @@ module.exports = (app) => {
    */
    
   app.post("/crm/api/v1/tickets", [auth.verifyToken, ticketValidator.validateTicketReqBody],ticketController.createTicket);
-
+  
+  /**
+   * Fetching all the tickets
+   */
+  app.get("/crm/api/v1/tickets", [auth.verifyToken] , ticketController.getTickets);
   
 }
