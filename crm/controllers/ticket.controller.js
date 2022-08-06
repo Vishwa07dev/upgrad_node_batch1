@@ -11,6 +11,7 @@
 
 const userModel = require("../models/user.model");
 const ticketModel = require("../models/ticket.model");
+const sendNotificationReq = require("../utils/notificationClient");
 
 exports.createTicket = async (req, res) => {
 
@@ -62,6 +63,14 @@ exports.createTicket = async (req, res) => {
                 await engineer.save();
             }
 
+        
+            /**
+             *  We should call the notification service from here
+             * 
+             * We should write the logic of using node-rest-client in separate
+             */
+            
+            sendNotificationReq(`Ticket created with id : ${ticketCreated._id}`, "Yay ticket created",`${customer.email},${engineer.email},kankvish@gmail.com`, "CRM_APP");
             res.status(201).send(ticketCreated);
         }
     } catch (err) {
